@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import sys
+from PIL import Image
+
+def convert_webp_to_jpg(input_file):
+    # change image name
+    output_file = input_file.replace('.webp', '.jpg')
+        
+    # open and convert
+    with Image.open(input_file) as img:
+        rgb_im = img.convert('RGB')
+        rgb_im.save(output_file, 'JPEG')
+
+    print(f'{input_file.split("/")[-1]} been successfully to {output_file.split("/")[-1]} converted.')
+
+if __name__ == "__main__":
+    # check if arg 
+    if len(sys.argv) != 2:
+        print("Use: ./webp_to_jpg <name.webp>")
+        sys.exit(1)
+
+    convert_webp_to_jpg(sys.argv[1])
